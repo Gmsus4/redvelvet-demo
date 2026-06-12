@@ -6,15 +6,20 @@ import Announcements from '../components/Announcements.astro';
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
 }
 
 const {
   title = 'Dulce Aurora - Demo de pasteleria artesanal',
   description = 'Sitio demo para pasteleria artesanal ficticia. Catalogo, eventos, contacto, pagos y politicas de muestra.',
+  image = '/og-image.png',
 } = Astro.props;
 
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
 const showAnnouncements = currentPath === '/';
+const siteUrl = import.meta.env.PUBLIC_SITE_URL ?? Astro.site?.toString();
+const canonicalUrl = siteUrl ? new URL(Astro.url.pathname, siteUrl).toString() : Astro.url.pathname;
+const socialImageUrl = siteUrl ? new URL(image, siteUrl).toString() : image;
 ---
 
 <!doctype html>
@@ -23,9 +28,23 @@ const showAnnouncements = currentPath === '/';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
+    <meta property="og:site_name" content="Dulce Aurora" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:alt" content="Dulce Aurora, postres artesanales para celebrar bonito" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImageUrl} />
     <title>{title}</title>
     <ClientRouter />
   </head>
