@@ -1,0 +1,85 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const terms = [
+  {
+    title: 'Anticipacion del pedido',
+    description: 'En esta demo, los pedidos se muestran con un minimo sugerido de 3 dias de anticipacion para simular un flujo real de agenda.',
+  },
+  {
+    title: 'Pago y confirmacion',
+    description: 'Los pagos, transferencias y confirmaciones mostrados en este sitio son datos ficticios usados solo como ejemplo de presentacion.',
+  },
+  {
+    title: 'Servicio a domicilio',
+    description: 'Las zonas de entrega mencionadas son ficticias y se usan unicamente para demostrar como se veria esta informacion en un sitio real.',
+  },
+  {
+    title: 'Entregas',
+    description: 'La informacion de entregas es demostrativa. En un proyecto real, aqui se definirian metodos, costos y disponibilidad.',
+  },
+  {
+    title: 'Responsabilidad durante el transporte',
+    description: 'Esta clausula es de ejemplo. Las responsabilidades reales deberian ajustarse a las politicas de cada negocio.',
+  },
+  {
+    title: 'Conservacion del producto',
+    description: 'Las recomendaciones de conservacion son de muestra y pueden adaptarse segun el tipo de producto que venda cada negocio.',
+  },
+  {
+    title: 'Verificacion de datos',
+    description: 'En una implementacion real, el cliente verificaria datos como sabor, diseno, fecha, hora, direccion, nombre y telefono.',
+  },
+];
+---
+
+<Layout title="Terminos y condiciones - Dulce Aurora demo">
+  <Navbar />
+
+  <main class="grid w-full place-items-center px-6 pb-10 pt-28 md:px-10 md:pt-34">
+    <div class="grid w-full max-w-4xl gap-10">
+      <section data-reveal class="flex w-full flex-col items-center text-center">
+        <p class="mb-4 rounded-full bg-secondary/25 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-primary">
+          Terminos
+        </p>
+        <h1 class="max-w-[13ch] font-hero text-[clamp(2.6rem,8vw,4.8rem)] font-normal leading-[0.98] text-secondary mb-12">
+          <span class="text-primary">Pedido claro,</span><br />
+          proceso bonito y sin vueltas.
+        </h1>
+        <p class="text-base font-bold leading-8 text-copy">
+          Estos terminos son contenido ficticio para una demo de sitio web. Sirven como ejemplo visual de como podria presentarse esta informacion.
+        </p>
+        <p class="text-base font-bold leading-8 text-copy">
+          La idea es mostrar una estructura clara para condiciones, pedidos y comunicacion con clientes.
+        </p>
+      </section>
+
+      <section class="grid w-full gap-3">
+        {terms.map((term, index) => (
+          <article data-reveal="soft" style={`--reveal-delay: ${Math.min(index, 6) * 55}ms`} class="motion-pop grid grid-cols-[auto_1fr] gap-4 rounded-3xl border border-primary/10 bg-white/50 px-5 py-4 backdrop-blur-sm">
+            <span class="pt-1 font-[Caveat] text-3xl font-bold leading-none text-primary">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <div>
+              <h2 class="text-sm font-black uppercase leading-5 text-primary">{term.title}</h2>
+              <p class="mt-2 text-sm font-bold leading-7 text-copy">{term.description}</p>
+            </div>
+          </article>
+        ))}
+      </section>
+
+      <section data-reveal class="flex w-full flex-col gap-4 rounded-3xl border border-primary/15 bg-secondary/18 p-5 sm:flex-row sm:items-center sm:justify-between">
+        <p class="max-w-md text-base font-bold leading-8 text-copy">
+          Si tienes dudas antes de confirmar tu pedido, escribenos y te ayudamos a revisar los detalles.
+        </p>
+        <a href="/contact" class="motion-press inline-flex w-fit rounded-full bg-primary px-6 py-3 text-sm font-black text-white transition hover:bg-primary/90">
+          Contactar
+        </a>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

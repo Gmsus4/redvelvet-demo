@@ -1,0 +1,69 @@
+---
+const highlights = ['Pasteles personalizados', 'Mesas dulces', 'Postres artesanales'];
+---
+
+<section class="grid min-h-[100svh] w-full place-items-center px-6 pb-10 pt-24 sm:px-8 md:px-10 md:pb-14 md:pt-28">
+  <div class="relative grid w-full max-w-6xl gap-10 overflow-hidden py-6 md:grid-cols-[0.95fr_1.05fr] md:items-center md:gap-12 md:py-10">
+    <div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0">
+      <!-- <img src="/izquierda/corazon1.png" alt="" class="absolute left-1 top-8 w-7 rotate-12 md:left-[6%] md:top-[12%] md:w-8" /> -->
+      <!-- <img src="/izquierda/estrella.png" alt="" class="absolute right-4 top-20 w-7 md:left-[34%] md:right-auto md:top-[18%] md:w-9" /> -->
+      <img src="/derecha/corazon2.png" alt="" class="motion-float absolute bottom-[18%] left-4 w-5 -rotate-12 md:left-[42%] md:w-6" />
+      <img src="/derecha/decoracion2.png" alt="" class="motion-float-slow absolute right-2 top-[35%] hidden w-16 md:block" />
+      <!-- <img src="/izquierda/linea1.png" alt="" class="absolute left-[28%] top-[8%] hidden w-8 md:block" /> -->
+    </div>
+
+    <div data-reveal class="relative z-10 flex flex-col items-center text-center md:items-start md:text-left">
+      <p class="mb-4 rounded-full bg-secondary/25 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-primary">
+        Reposteria artesanal
+      </p>
+
+      <h1 class="max-w-[12ch] font-hero text-[clamp(2.9rem,10vw,5.7rem)] font-normal leading-[0.94] text-secondary md:max-w-[11ch] md:text-[3.7rem] lg:text-[4.45rem] xl:text-[5rem] 2xl:text-[5.35rem]">
+        <span class="text-primary">Dulce Aurora,</span><br />
+        postres para celebrar bonito.
+      </h1>
+
+      <p class="mt-6 max-w-md text-balance text-base font-bold leading-8 text-copy md:text-base lg:text-lg">
+        Pasteles, mesas dulces y detalles hechos con cuidado para cumpleanos, reuniones y momentos especiales.
+      </p>
+
+      <div class="mt-7 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row md:items-start">
+        <a href="/contact" class="motion-press inline-flex min-h-12 w-full items-center justify-center rounded-full bg-primary px-8 text-sm font-black text-white transition hover:bg-primary/90 sm:w-auto">
+          Haz tu pedido
+        </a>
+        <a href="/products" class="motion-press inline-flex min-h-12 w-full items-center justify-center rounded-full border border-primary/25 bg-white/55 px-8 text-sm font-black text-primary transition hover:bg-white sm:w-auto">
+          Ver productos
+        </a>
+      </div>
+
+      <ul class="mt-7 flex w-full list-none flex-wrap justify-center gap-2 p-0 md:justify-start">
+        {highlights.map((item) => (
+          <li data-reveal="soft" class="rounded-full border border-primary/12 bg-cream/80 px-3.5 py-2 text-xs font-black text-softcopy backdrop-blur-sm">
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div data-reveal="image" class="relative z-10 mx-auto grid w-full max-w-[28rem] place-items-center md:max-w-[32rem]">
+      <div class="relative aspect-[0.92] w-full max-w-[23rem] sm:max-w-[25rem] md:max-w-[29rem]">
+        <div class="absolute inset-x-6 bottom-0 top-10 rounded-[2.5rem] bg-secondary/18"></div>
+
+        <figure class="motion-pop absolute left-1/2 top-4 w-[72%] -translate-x-1/2 overflow-hidden rounded-[2rem] border border-primary/12 bg-white p-2 shadow-[0_22px_50px_rgb(239_47_127_/_0.18)]">
+          <img src="/products/pasteles.webp" alt="Pastel personalizado de Dulce Aurora" class="aspect-[4/5] w-full rounded-[1.5rem] object-cover" />
+        </figure>
+
+        <figure class="motion-float absolute bottom-18 left-0 w-[34%] overflow-hidden rounded-full border-4 border-cream bg-white shadow-[0_16px_34px_rgb(239_47_127_/_0.2)]">
+          <img src="/products/fresas.webp" alt="Fresas con chocolate" class="aspect-square w-full object-cover" />
+        </figure>
+
+        <figure class="motion-float-slow absolute bottom-10 right-0 w-[38%] overflow-hidden rounded-full border-4 border-cream bg-white shadow-[0_16px_34px_rgb(239_47_127_/_0.2)]">
+          <img src="/products/cupcakes.webp" alt="Cupcakes decorados" class="aspect-square w-full object-cover" />
+        </figure>
+
+        <img src="/gato3.png" alt="" class="pointer-events-none absolute bottom-1 left-[10%] w-20 -scale-x-100 select-none sm:w-24" />
+        <!-- <img src="/mujerdibujoremove.png" alt="" class="pointer-events-none absolute bottom-0 right-[12%] w-20 select-none sm:w-24" /> -->
+        <img src="/corazon.png" alt="" class="pointer-events-none absolute right-[8%] top-2 w-7 rotate-12 select-none" />
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,77 @@
+---
+import { announcements } from "../data/announcements.js";
+
+const activeAnnouncements = announcements.filter((announcement) => announcement.active);
+---
+
+{activeAnnouncements.length > 0 && (
+  <aside
+    id="announcements"
+    aria-label="Avisos de Dulce Aurora"
+    class="fixed inset-x-0 bottom-4 z-[90] mx-auto grid w-full max-w-3xl gap-3 px-4 sm:bottom-6"
+  >
+    {activeAnnouncements.map((announcement) => (
+      <article
+        data-announcement-id={announcement.id}
+        class="announcement-item motion-pop relative overflow-visible rounded-[1.75rem] border border-primary/10 bg-cream/95 p-4 shadow-[0_18px_38px_rgb(239_47_127_/_0.16)] backdrop-blur md:flex md:items-center md:justify-between md:gap-5"
+      >
+        <img src="/corazon.png" alt="" class="motion-float pointer-events-none absolute -left-1 -top-1 w-7 rotate-12 select-none" />
+
+        <div class="relative z-10">
+          <p class="text-[0.68rem] font-black uppercase tracking-[0.18em] text-primary">{announcement.eyebrow}</p>
+          <h2 class="mt-1 text-base font-black leading-tight text-copy">{announcement.title}</h2>
+          <p class="mt-1 text-sm font-bold leading-6 text-softcopy">{announcement.message}</p>
+        </div>
+
+        {announcement.href && announcement.cta && (
+          <a
+            href={announcement.href}
+            class="motion-press relative z-10 mt-4 inline-flex min-h-10 w-full items-center justify-center rounded-full bg-primary px-5 text-xs font-black text-white transition hover:bg-primary/90 md:mt-0 md:w-fit"
+          >
+            {announcement.cta}
+          </a>
+        )}
+
+        <button
+          type="button"
+          data-dismiss-announcement={announcement.id}
+          aria-label={`Cerrar aviso: ${announcement.title}`}
+          class="motion-press absolute -right-2 -top-2 z-20 grid h-8 w-8 cursor-pointer place-items-center rounded-full border border-primary/15 bg-white text-sm font-black text-primary shadow-[0_8px_18px_rgb(239_47_127_/_0.16)] transition hover:bg-warm"
+        >
+          ×
+        </button>
+      </article>
+    ))}
+  </aside>
+
+  <script>
+    function initAnnouncements() {
+      const container = document.getElementById('announcements');
+      if (!container) return;
+
+      container.querySelectorAll<HTMLButtonElement>('[data-dismiss-announcement]').forEach((button) => {
+        if (button.dataset.bound === 'true') return;
+
+        button.dataset.bound = 'true';
+        button.addEventListener('click', () => {
+          const id = button.dataset.dismissAnnouncement;
+          const item = id ? container.querySelector<HTMLElement>(`[data-announcement-id="${id}"]`) : null;
+          if (!id || !item) return;
+
+          item.remove();
+
+          if (!container.querySelector('[data-announcement-id]')) {
+            container.remove();
+          }
+        });
+      });
+
+      if (!container.querySelector('[data-announcement-id]')) {
+        container.remove();
+      }
+    }
+
+    initAnnouncements();
+    document.addEventListener('astro:page-load', initAnnouncements);
+  </script>
+)}

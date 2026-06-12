@@ -1,0 +1,77 @@
+---
+import Footer from "../components/Footer.astro";
+import Recommendations from "../components/Recommendations.astro";
+import Navbar from "../components/Navbar.astro";
+import Layout from "../layouts/Layout.astro";
+
+const products = [
+  { name: "Mostachon", description: "Galleta crujiente, crema y fresas frescas.", image: "/products/mostachon.webp" },
+  { name: "Donas con toppings", description: "Esponjosas y decoradas a tu gusto.", image: "/products/donas.webp" },
+  { name: "Mini cakes", description: "Pastelitos individuales para cualquier antojo.", image: "/products/minicakes.webp" },
+  { name: "New York cookies", description: "Grandes, suaves por dentro y crujientes por fuera.", image: "/products/cookies.webp" },
+  { name: "Cupcakes", description: "Decorados a mano en sabores que enamoran.", image: "/products/cupcakes.webp" },
+  { name: "Brownies", description: "Fudgy, chocolatosos y con toppings.", image: "/products/brownies.webp" },
+  { name: "Fresas con chocolate", description: "Frescas, cubiertas y decoradas con detalle.", image: "/products/fresas.webp" },
+  { name: "Pasteles personalizados", description: "Disenos especiales para celebrar bonito.", image: "/products/pasteles.webp" },
+  { name: "Cheesecakes", description: "Cremosos y con toppings irresistibles.", image: "/products/cheesecake.webp" },
+];
+---
+
+<Layout title="Productos - Dulce Aurora demo">
+  <Navbar />
+  <main class="grid w-full place-items-center overflow-hidden px-6 pb-10 pt-28 md:px-20 md:pt-34">
+    <div class="grid w-full max-w-6xl gap-14">
+      <section data-reveal class="relative grid gap-10 md:grid-cols-[0.95fr_1.05fr] md:items-center">
+        <div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 md:hidden">
+          <img src="/izquierda/Cupcake.png" alt="" class="motion-float absolute -left-3 top-[36%] w-16 -rotate-12" />
+          <img src="/derecha/corazon3.png" alt="" class="motion-float-slow absolute right-2 top-5 w-5 rotate-12" />
+          <img src="/derecha/rama.png" alt="" class="motion-float absolute -right-5 bottom-[16%] w-14" />
+        </div>
+
+        <div class="relative z-10 flex flex-col items-center text-center md:items-start md:text-left">
+          <p class="mb-4 rounded-full bg-warm px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-primary md:bg-secondary/25">
+            Catalogo dulce
+          </p>
+          <h1 class="max-w-[12ch] font-hero text-[clamp(2.8rem,8vw,4.50rem)] font-normal leading-[0.95] text-secondary md:max-w-[11ch]">
+            <span class="text-primary">Productos</span><br />
+            para antojos y celebraciones.
+          </h1>
+          <p class="mt-6 max-w-md text-base font-bold leading-8 text-copy md:text-lg">
+            Hechos con ingredientes de calidad, mucho carino y ese toque especial que los hace inolvidables.
+          </p>
+        </div>
+
+        <div class="relative mx-auto grid w-full max-w-[30rem] place-items-center">
+          <div class="absolute inset-x-8 bottom-0 top-10 rounded-[2.5rem] bg-warm/80 md:bg-secondary/18"></div>
+          <figure class="motion-pop relative z-10 w-[78%] overflow-hidden rounded-[2rem] border border-primary/12 bg-white p-2 shadow-[0_22px_50px_rgb(239_47_127_/_0.16)]">
+            <img src="/products/pasteles.webp" alt="Pastel personalizado Dulce Aurora" class="aspect-[4/5] w-full rounded-[1.5rem] object-cover" />
+          </figure>
+          <figure class="absolute bottom-10 left-2 z-20 w-[34%] overflow-hidden rounded-full border-4 border-cream bg-white">
+            <img src="/products/fresas.webp" alt="Fresas con chocolate" class="aspect-square w-full object-cover" />
+          </figure>
+          <figure class="absolute bottom-4 right-4 z-20 w-[36%] overflow-hidden rounded-full border-4 border-cream bg-white">
+            <img src="/products/cupcakes.webp" alt="Cupcakes" class="aspect-square w-full object-cover" />
+          </figure>
+        </div>
+      </section>
+
+      <section class="grid w-full grid-cols-2 gap-x-5 gap-y-10 sm:grid-cols-3 lg:grid-cols-4">
+        {products.map(({ name, description, image }, index) => (
+          <article data-reveal="soft" style={`--reveal-delay: ${Math.min(index, 7) * 55}ms`} class="group relative flex flex-col items-center gap-3 text-center">
+            <img src="/corazon.png" alt="" class="pointer-events-none absolute right-6 top-0 z-10 w-4 rotate-12 select-none md:hidden" />
+            <div class="motion-pop relative h-32 w-32 shrink-0 overflow-hidden rounded-full border border-primary/12 bg-warm/70 p-1 sm:h-36 sm:w-36 md:bg-white">
+              <img src={image} alt={name} class="h-full w-full rounded-full object-cover" />
+            </div>
+            <div class="flex max-w-40 flex-col gap-1">
+              <h2 class="text-sm font-black leading-tight text-primary">{name.toUpperCase()}</h2>
+              <p class="text-xs font-bold leading-5 text-softcopy">{description}</p>
+            </div>
+          </article>
+        ))}
+      </section>
+
+      <Recommendations />
+    </div>
+  </main>
+  <Footer />
+</Layout>

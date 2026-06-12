@@ -1,0 +1,226 @@
+---
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import Layout from "../layouts/Layout.astro";
+
+const orderFormUrl = "#";
+const experienceFormUrl = "#";
+const mapsUrl = "https://www.google.com/maps/search/?api=1&query=Dulce%20Aurora%20Demo%20Villa%20Aurora%20Mexico";
+const mapsEmbedUrl = "https://www.google.com/maps?q=Dulce%20Aurora%20Demo%20Villa%20Aurora%20Mexico&output=embed";
+const whatsappBaseUrl = "https://wa.me/525501004827";
+const defaultWhatsappMessage = "Hola, quiero cotizar un pedido para [fecha]. Me interesa [producto] para [personas]. Me gustaria estilo [colores/tema] y entrega en [zona].";
+// const whatsappUrl = `${whatsappBaseUrl}?text=${encodeURIComponent("Hola, quiero agendar un pedido")}`;
+const whatsappUrl = `${whatsappBaseUrl}`;
+
+const contactInfo = [
+  { label: "Instagram", value: "@dulceaurora_demo", url: "#" },
+  { label: "WhatsApp", value: "+52 55 0100 4827", url: whatsappUrl },
+  { label: "Correo", value: "hola@dulceaurora-demo.com", url: "mailto:hola@dulceaurora-demo.com" },
+];
+
+const orderInfo = ["Fecha de entrega", "Personas aproximadas", "Producto o idea", "Colores o referencias"];
+
+const beforeWriting = [
+  "Fecha y hora en la que lo necesitas",
+  "Producto que te interesa o referencia visual",
+  "Cantidad de personas o porciones",
+  "Zona de entrega o si pasas a recoger",
+];
+
+const responseNotes = [
+  { title: "Respuesta", description: "Contestamos lo antes posible por WhatsApp o redes sociales." },
+  { title: "Agenda", description: "Los pedidos se confirman con anticipacion y pago para apartar fecha." },
+  { title: "Entrega", description: "Coordinamos detalles segun producto, horario y zona disponible." },
+];
+
+const deliveryZones = ["Villa Aurora", "Colonia Magnolia", "Jardin Norte", "Lomas Dulces", "Centro Demo"];
+---
+
+<Layout title="Contacto - Dulce Aurora demo">
+  <Navbar />
+  <main class="grid w-full place-items-center overflow-hidden px-6 pb-10 pt-28 md:px-20 md:pt-34">
+    <section data-reveal class="relative grid w-full max-w-6xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 md:hidden">
+        <img src="/izquierda/batidor.png" alt="" class="motion-float absolute -right-2 top-[18%] w-11 rotate-12" />
+        <!-- <img src="/florero.png" alt="" class="absolute -left-3 bottom-[18%] w-12 -rotate-6" /> -->
+        <img src="/derecha/corazon2.png" alt="" class="motion-float-slow absolute right-8 bottom-[44%] w-5 rotate-12" />
+      </div>
+
+      <div class="relative z-10 flex flex-col items-center text-center lg:items-start lg:text-left">
+        <p class="mb-4 rounded-full bg-warm px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-primary lg:bg-secondary/25">
+          Agenda tu pedido
+        </p>
+        <h1 class="max-w-[12ch] font-hero text-[clamp(2.8rem,8vw,5.25rem)] font-normal leading-[0.95] text-secondary md:max-w-[11ch]">
+          <span class="text-primary">Hablemos</span><br />
+          de tu proximo postre.
+        </h1>
+        <p class="mt-6 max-w-md text-base font-bold leading-8 text-copy md:text-lg">
+          Cuentanos la fecha, la idea, los sabores y el estilo. Te ayudamos a aterrizarlo en algo bonito y delicioso.
+        </p>
+
+        <div class="mt-7 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row lg:items-start">
+          <a href={orderFormUrl} target="_blank" rel="noopener noreferrer" class="motion-press inline-flex min-h-12 w-full items-center justify-center rounded-full bg-primary px-8 text-sm font-black text-white transition hover:bg-primary/90 sm:w-auto">
+            <!-- Formulario para agendar -->
+            Agendar por Instagram
+          </a>
+          <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="motion-press inline-flex min-h-12 w-full items-center justify-center rounded-full border border-primary/25 bg-white/55 px-8 text-sm font-black text-primary transition hover:bg-white sm:w-auto">
+            Agendar por WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="relative z-10 grid gap-5">
+        <div class="grid gap-3 rounded-[2rem] border border-primary/10 bg-secondary/10 p-4 backdrop-blur-sm lg:bg-white/45">
+          {contactInfo.map(({ label, value, url }, index) => (
+            <a
+              href={url}
+              target={url.startsWith("http") ? "_blank" : undefined}
+              rel={url.startsWith("http") ? "noopener noreferrer" : undefined}
+              data-reveal="soft"
+              style={`--reveal-delay: ${index * 60}ms`}
+              class="motion-press group flex items-center justify-between gap-4 rounded-2xl bg-cream/85 px-4 py-3 transition hover:bg-white"
+            >
+              <span class="text-xs font-black uppercase tracking-[0.16em] text-primary">{label}</span>
+              <span class="break-all text-right text-sm font-bold text-copy">{value}</span>
+            </a>
+          ))}
+        </div>
+
+        <div class="flex flex-wrap gap-2">
+          {orderInfo.map((detail) => (
+            <span class="rounded-full border border-primary/12 bg-warm/20 px-3.5 py-2 text-xs font-black text-softcopy backdrop-blur-sm lg:bg-cream/80">
+              {detail}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section data-reveal class="mt-16 grid w-full max-w-6xl gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
+      <div class="relative overflow-hidden rounded-[2.5rem] bg-primary p-6 text-cream md:p-8">
+        <img src="/izquierda/linea1.png" alt="" class="motion-float pointer-events-none absolute right-6 top-6 w-10 select-none" />
+        <p class="font-[Caveat] text-4xl font-bold leading-none md:text-5xl">Mensaje ideal</p>
+        <p class="mt-4 text-sm font-bold leading-7 text-cream/90">
+          Para responderte mejor, puedes mandar algo asi por WhatsApp o por el formulario:
+        </p>
+
+        <label class="mt-6 block rounded-[2rem] bg-cream p-5 text-left text-copy">
+          <span class="mb-3 block text-xs font-black uppercase tracking-[0.16em] text-primary">Edita tu mensaje</span>
+          <textarea
+            id="whatsapp-message"
+            class="min-h-36 w-full resize-none border-0 bg-transparent p-0 text-sm font-black leading-7 text-copy outline-none"
+          >{defaultWhatsappMessage}</textarea>
+        </label>
+
+        <a id="whatsapp-message-link" href={`${whatsappBaseUrl}?text=${encodeURIComponent(defaultWhatsappMessage)}`} target="_blank" rel="noopener noreferrer" class="motion-press mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-cream px-8 text-sm font-black text-primary transition hover:bg-warm sm:w-fit">
+          Mandar mensaje
+        </a>
+      </div>
+
+      <div class="grid gap-5">
+        <div class="rounded-[2.5rem] border border-primary/10 bg-white/45 p-5 backdrop-blur-sm md:p-6">
+          <p class="mb-4 inline-block rounded-full bg-warm px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-primary">
+            Checklist
+          </p>
+          <div class="grid gap-3">
+            {beforeWriting.map((item, index) => (
+              <label data-reveal="soft" style={`--reveal-delay: ${index * 60}ms`} class="flex items-center gap-3 rounded-2xl bg-cream/80 p-4">
+                <span class="grid h-6 w-6 shrink-0 place-items-center rounded-full border-2 border-primary text-xs font-black text-primary">{index + 1}</span>
+                <span class="text-sm font-black leading-6 text-copy">{item}</span>
+              </label>
+            ))}
+          </div>
+        </div>
+
+        <div class="grid gap-3 sm:grid-cols-3">
+          {responseNotes.map((note, index) => (
+            <article data-reveal="soft" style={`--reveal-delay: ${index * 80}ms`} class="rounded-[1.5rem] bg-secondary/12 p-4">
+              <h3 class="text-xs font-black uppercase tracking-[0.12em] text-primary">{note.title}</h3>
+              <p class="mt-2 text-xs font-bold leading-6 text-copy">{note.description}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section data-reveal class="mt-14 grid w-full max-w-6xl gap-6 rounded-[2.5rem] border border-primary/10 bg-white/45 p-5 backdrop-blur-sm md:p-7 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
+      <div>
+        <p class="mb-4 inline-block rounded-full bg-warm px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-primary">
+          Ubicacion y entregas
+        </p>
+        <h2 class="font-hero text-4xl font-normal leading-none text-primary sm:text-5xl">
+          Estamos en Villa Aurora.
+        </h2>
+        <p class="mt-5 text-base font-bold leading-8 text-copy">
+          Coordinamos entregas segun producto, horario y disponibilidad. Si tu zona no aparece, escribenos y revisamos si podemos ayudarte.
+        </p>
+        <a href={mapsUrl} target="_blank" rel="noopener noreferrer" class="motion-press mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-primary px-8 text-sm font-black text-white transition hover:bg-primary/90 sm:w-fit">
+          Ver zona en Maps
+        </a>
+      </div>
+
+      <div class="grid gap-4">
+        <div class="relative overflow-hidden rounded-[2rem] border border-primary/10 bg-cream p-2 shadow-[0_18px_38px_rgb(239_47_127_/_0.12)]">
+          <iframe
+            src={mapsEmbedUrl}
+            title="Ubicacion demo de Dulce Aurora en Google Maps"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            class="aspect-[4/3] w-full rounded-[1.5rem] border-0 sm:aspect-[16/9]"
+          ></iframe>
+        </div>
+
+        <!-- <div class="grid gap-3 sm:grid-cols-2">
+          {deliveryZones.map((zone, index) => (
+            <div data-reveal="soft" style={`--reveal-delay: ${index * 55}ms`} class="motion-pop rounded-[1.5rem] bg-cream/85 p-4">
+              <p class="text-xs font-black uppercase tracking-[0.14em] text-primary">Zona</p>
+              <p class="mt-2 font-[Caveat] text-3xl font-bold leading-none text-copy">{zone}</p>
+            </div>
+          ))}
+        </div> -->
+      </div>
+    </section>
+
+    <section data-reveal class="mt-14 w-full max-w-6xl">
+      <div class="relative overflow-hidden rounded-[2.5rem] bg-warm/20 px-6 py-8 text-center md:p-10">
+        <img src="/corazon.png" alt="" class="motion-float pointer-events-none absolute -left-1 top-7 z-0 w-7 rotate-12 select-none sm:left-7 sm:w-8" />
+        <img src="/derecha/corazon3.png" alt="" class="motion-float-slow pointer-events-none absolute -bottom-1 -right-1 z-0 w-8 -rotate-12 select-none sm:bottom-6 sm:right-8 sm:w-7" />
+
+        <div class="relative z-10 mx-auto max-w-3xl">
+          <p class="mx-auto max-w-[14ch] font-hero text-4xl font-normal leading-none text-primary sm:max-w-none sm:text-5xl">
+            Ya probaste algo de Dulce Aurora?
+          </p>
+          <p class="mx-auto mt-5 max-w-2xl text-base font-bold leading-8 text-copy">
+            Cuentanos como fue tu experiencia. Tu opinion nos ayuda a mejorar recetas, entregas y detalles para seguir celebrando bonito.
+          </p>
+
+          <a href={experienceFormUrl} target="_blank" rel="noopener noreferrer" class="motion-press mt-7 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-primary px-8 text-sm font-black text-white transition hover:bg-primary/90 sm:w-fit">
+            Cuentanos tu experiencia
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+
+  <script>
+    function initWhatsappMessage() {
+      const textarea = document.getElementById('whatsapp-message') as HTMLTextAreaElement | null;
+      const link = document.getElementById('whatsapp-message-link') as HTMLAnchorElement | null;
+      const baseUrl = 'https://wa.me/525501004827';
+
+      if (!textarea || !link) return;
+
+      const syncMessage = () => {
+        const message = textarea.value.trim() || 'Hola, quiero cotizar un pedido.';
+        link.href = `${baseUrl}?text=${encodeURIComponent(message)}`;
+      };
+
+      textarea.addEventListener('input', syncMessage);
+      syncMessage();
+    }
+
+    initWhatsappMessage();
+    document.addEventListener('astro:page-load', initWhatsappMessage);
+  </script>
+</Layout>

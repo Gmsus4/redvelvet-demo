@@ -1,0 +1,164 @@
+@import '@fontsource-variable/playfair-display/wght.css';
+@import '@fontsource-variable/fraunces/wght.css';
+@import '@fontsource-variable/lexend/wght.css';
+@import '@fontsource/bree-serif/400.css';
+@import '@fontsource/lato/400.css';
+@import '@fontsource/lato/700.css';
+@import '@fontsource/lato/900.css';
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #ef2f7f;
+  /* --color-primary: #8D103E; */
+  --color-secondary: #f9a2b4;
+  --color-cream: #fff3f7;
+  --color-ink: #080808;
+  --color-copy: #3d3035;
+  --color-softcopy: #6f5a62;
+  --color-muted: #3f3337;
+  --color-paper: #fff3f7;
+  --color-warm: #fef3c7;
+  --color-cocoa: #080808;
+
+  --font-display: "Playfair Display Variable", serif;
+  --font-hero: "Bree Serif", serif;
+  --font-body2: "Lato", sans-serif;
+  --font-body: 'Lexend Variable', sans-serif;
+}
+
+:root {
+  color-scheme: light;
+  --line: #080808;
+  --shadow-pop: 5px 5px 0 #080808;
+  --shadow-pop-lg: 8px 8px 0 #080808;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-cream);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--color-ink);
+  background:
+    radial-gradient(circle at 16px 16px, rgb(239 47 127 / 0.055) 1px, transparent 1.5px) 0 0 / 34px 34px,
+    var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  text-decoration: none;
+}
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(22px) scale(0.985);
+  transition:
+    opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+[data-reveal="soft"] {
+  transform: translateY(14px);
+}
+
+[data-reveal="image"] {
+  transform: translateY(20px) scale(0.965) rotate(var(--reveal-rotate, 0deg));
+}
+
+[data-reveal="image"].is-visible {
+  transform: translateY(0) scale(1) rotate(0deg);
+}
+
+.motion-float {
+  animation: float-soft 5.5s ease-in-out infinite;
+}
+
+.motion-float-slow {
+  animation: float-soft 7.5s ease-in-out infinite;
+}
+
+.motion-pop {
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    background-color 220ms ease,
+    border-color 220ms ease,
+    color 220ms ease;
+}
+
+.motion-pop:hover {
+  transform: translateY(-3px) scale(1.015);
+}
+
+.motion-press {
+  transition:
+    transform 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease,
+    color 180ms ease;
+}
+
+.motion-press:hover {
+  transform: translateY(-2px);
+}
+
+.motion-press:active {
+  transform: translateY(0) scale(0.985);
+}
+
+@keyframes float-soft {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(var(--float-rotate, 0deg));
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0) rotate(var(--float-rotate, 0deg));
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root),
+::view-transition-old(page-shell),
+::view-transition-new(page-shell),
+::view-transition-old(site-decorations),
+::view-transition-new(site-decorations) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-group(site-decorations) {
+  z-index: 0;
+}
+
+::view-transition-group(page-shell) {
+  z-index: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}

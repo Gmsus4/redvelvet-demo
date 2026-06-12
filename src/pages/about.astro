@@ -1,0 +1,84 @@
+---
+import Footer from "../components/Footer.astro";
+import Navbar from "../components/Navbar.astro";
+import Layout from "../layouts/Layout.astro";
+
+const notes = ["Recetas cuidadas", "Detalles a mano", "Pedidos con historia"];
+
+const story = [
+  { year: "Inicio", text: "Dulce Aurora empezo como una idea ficticia para mostrar una experiencia digital de pasteleria." },
+  { year: "Primeros pedidos", text: "Llegaron encargos familiares, cumpleanos pequenos y detalles hechos con mas emocion que prisa." },
+  { year: "Hoy", text: "Preparamos postres para reuniones, eventos y celebraciones que merecen algo hecho con cuidado." },
+];
+---
+
+<Layout title="Conocenos - Dulce Aurora demo">
+  <Navbar />
+  <main class="grid w-full place-items-center overflow-hidden px-6 pb-10 pt-28 md:px-20 md:pt-34">
+    <section data-reveal class="relative grid w-full max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 md:hidden">
+        <img src="/izquierda/estrella.png" alt="" class="motion-float absolute -right-2 top-4 w-8 rotate-12" />
+        <img src="/derecha/corazon2.png" alt="" class="motion-float-slow absolute left-1 top-[42%] w-5 -rotate-12" />
+        <img src="/izquierda/linea1.png" alt="" class="motion-float absolute right-6 bottom-[32%] w-8 rotate-12" />
+      </div>
+
+      <div class="relative order-2 mx-auto grid w-full max-w-[30rem] place-items-center lg:order-1">
+        <div class="absolute inset-x-10 bottom-0 top-10 rounded-[2.5rem] bg-secondary/18"></div>
+        <img src="/mujer.png" alt="Lia Moreno preparando un pastel" class="relative z-10 w-full max-w-[24rem] object-contain" />
+        <img src="/gato3.png" alt="" class="motion-float pointer-events-none absolute bottom-2 left-6 z-20 w-22 -scale-x-100 select-none" />
+        <img src="/pastel.png" alt="" class="motion-float-slow pointer-events-none absolute bottom-6 right-10 z-20 w-20 select-none" />
+      </div>
+
+      <div class="relative z-10 order-1 flex flex-col items-center text-center lg:order-2 lg:items-start lg:text-left">
+        <p class="mb-4 rounded-full bg-warm px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-primary lg:bg-secondary/25">
+          Detras de Dulce Aurora
+        </p>
+        <h1 class="max-w-[12ch] font-hero text-[clamp(2.8rem,8vw,4.25rem)] font-normal leading-[0.95] text-secondary md:max-w-[12ch]">
+          <span class="text-primary">Hola, soy Lia.</span><br />
+          Horneo para celebrar bonito.
+        </h1>
+        <div class="mt-6 flex max-w-xl flex-col gap-4 text-base font-bold leading-8 text-copy">
+          <p>Preparo cada pastel y cada postrecito con detalle, desde la receta hasta la presentacion final.</p>
+          <p>Dulce Aurora es una marca demo creada para presentar una propuesta visual y funcional para negocios de reposteria.</p>
+          <p>Lo que mas disfruto es escuchar tus ideas y volverlas parte de cumpleanos, reuniones, expos y momentos dulces.</p>
+        </div>
+        <div class="mt-7 flex flex-wrap justify-center gap-2 md:justify-start">
+          {notes.map((note) => (
+          <span class="rounded-full border border-primary/12 bg-warm/20 px-3.5 py-2 text-xs font-black text-softcopy backdrop-blur-sm lg:bg-cream/80">
+              {note}
+            </span>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section data-reveal class="mt-16 grid w-full max-w-6xl gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+      <div class="relative rounded-[2.5rem] bg-primary p-7 text-cream md:p-10">
+        <img src="/corazon.png" alt="" class="motion-float pointer-events-none absolute -right-3 -top-4 w-12 rotate-12 select-none" />
+        <p class="font-[Caveat] text-4xl font-bold leading-none text-cream md:text-5xl">Lo que queremos que sientas</p>
+        <p class="mt-6 max-w-2xl text-2xl font-black leading-tight text-cream md:text-3xl">
+          Que tu postre no sea solo bonito para la foto, sino rico, cuidado y pensado para el momento que vas a celebrar.
+        </p>
+        <p class="mt-5 text-base font-bold leading-8 text-cream/85">
+          Por eso preguntamos, proponemos y ajustamos detalles. La idea no es hacer un pastel cualquiera: es hacer uno que tenga sentido contigo.
+        </p>
+      </div>
+
+      <div class="relative">
+        <p class="mb-5 inline-block rounded-full bg-warm px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-primary">
+          Nuestra historia
+        </p>
+        <div class="grid gap-6 border-l-2 border-dashed border-primary/35 pl-5">
+          {story.map((item, index) => (
+            <article data-reveal="soft" style={`--reveal-delay: ${index * 80}ms`} class="relative">
+              <span class="absolute -left-[1.85rem] top-1 h-4 w-4 rounded-full border-4 border-cream bg-primary"></span>
+              <h2 class="font-[Caveat] text-3xl font-bold leading-none text-primary">{item.year}</h2>
+              <p class="mt-2 text-sm font-bold leading-7 text-copy">{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

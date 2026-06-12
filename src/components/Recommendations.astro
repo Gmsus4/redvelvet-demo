@@ -1,0 +1,40 @@
+---
+const recomendaciones = [
+  {
+    image: "/sun.png",
+    title: "NUNCA EXPONER",
+    description: "Tus postres a sol directo.",
+  },
+  {
+    image: "/ice.png",
+    title: "SIEMPRE MANTENER",
+    description: "Tu producto en refrigeración, nunca congelación.",
+  },
+  {
+    image: "/clock.png",
+    title: "PARA TU EVENTO",
+    description: "Sacar del refrigerador el producto de 20 a 30 minutos antes.",
+  },
+];
+---
+
+<div data-reveal class="py-10 md:py-16">
+  <div class="grid w-full place-items-center gap-8 md:gap-12">
+    <div class="text-center">
+      <p class="mb-3 rounded-full bg-warm inline-block px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-primary md:bg-secondary/25">
+        Cuidados
+      </p>
+      <h2 class="font-hero text-4xl font-normal leading-none text-primary md:text-5xl">Recomendaciones</h2>
+    </div>
+
+    <div class="grid w-full max-w-5xl grid-cols-1 gap-5 md:grid-cols-3 md:gap-6">
+      {recomendaciones.map((item, index) => (
+        <div data-reveal="soft" style={`--reveal-delay: ${index * 80}ms`} class="motion-pop flex flex-col items-center gap-4 rounded-[2rem] border border-primary/10 bg-white/45 px-5 py-6 text-center backdrop-blur-sm md:bg-white/45">
+          <img src={item.image} alt="" class="motion-float h-32 w-30 object-contain md:h-36" />
+          <h3 class="text-sm font-black leading-tight text-primary">{item.title}</h3>
+          <p class="max-w-56 text-base font-bold leading-7 text-copy">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
